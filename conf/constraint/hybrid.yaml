@@ -1,0 +1,6 @@
+_target_: bmf.constraints.HybridConstraint
+name: hybrid
+temp: 1.0
+anneal_rate: 0.95
+final_projection: true
+projection_method: median

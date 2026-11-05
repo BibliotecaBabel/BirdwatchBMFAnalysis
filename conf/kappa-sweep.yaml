@@ -1,0 +1,19 @@
+defaults:
+  - /base
+  - override hydra/launcher: joblib
+  - _self_
+
+project_name: kappa-sweep
+save_folder: data/kappa-sweep
+replications: 10
+
+dg:
+  user_distribution:
+    mean: 2.0
+
+hydra:
+  sweeper:
+    params:
+      model.regularization_type: l2
+      model.reg_lambda: 0.01, 0.1
+      model.reg_intercept_multiplier: 0.1, 0.25, 0.5, 1, 2, 4, 10

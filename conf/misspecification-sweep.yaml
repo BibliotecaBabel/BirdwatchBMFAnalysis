@@ -1,0 +1,23 @@
+defaults:
+  - /base
+  - override hydra/launcher: joblib
+  - _self_
+
+project_name: misspecification-sweep
+save_folder: data/misspecification-sweep
+replications: 10
+
+# Mirrors agent-mean-sweep so anchor drift is directly comparable to the main
+# result, but crossed with the rating interaction g(u, v) instead of reg_lambda.
+# BMF only represents the bilinear g, so euclidean and higher_order leave their
+# extra terms as omitted-variable bias.
+hydra:
+  sweeper:
+    params:
+      interaction@dg.interaction: bilinear, euclidean, higher_order
+      dg.user_distribution.mean: ${linspace:-2,2,11}
+      model.regularization_type: l2
+      model.reg_lambda: 0.01, 0.05, 0.1
+      # Held at 1.0, as in agent-mean-sweep, so the variants are compared at
+      # the main figure's regularization ratio.
+      model.reg_intercept_multiplier: 1.0

@@ -1,0 +1,32 @@
+defaults:
+  - /base
+  - override hydra/launcher: joblib
+  - _self_
+
+# Robustness sweep behind the NeurIPS lambda, risk and noise figures
+# (gamma-robustness_lambda-sweep, _risk-reg, _noise), at the same optimization
+# settings as every other sweep: 500 epochs, patience 10, min_delta 1e-5.
+#
+# This reproduces the run of 2026-10-21 exactly: the experiment names and the
+# data seeds are hashes of the resolved config, including project_name and
+# save_folder, so neither may be renamed. batch_size 10100 is the full batch
+# (101 users x 100 items), written out because it is part of that hash.
+#
+# The older conf/robustness-distortion.yaml (200 epochs, three batch sizes) is
+# no longer the source of any paper figure.
+project_name: robustness-distortion-500
+save_folder: data/robustness-distortion-500
+
+training:
+  max_epochs: 500
+  patience: 10
+  min_delta: 1e-5
+  batch_size: 10100
+
+hydra:
+  sweeper:
+    params:
+      dg.user_distribution.mean: 2.0
+      dg.noise_std: 0.0, 0.1, 0.5
+      model.reg_lambda: 0.005, 0.01, 0.05, 0.1, 0.5, 1
+      model.reg_intercept_multiplier: 0.2, 1.0, 5.0

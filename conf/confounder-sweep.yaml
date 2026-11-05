@@ -1,0 +1,32 @@
+defaults:
+  - /base
+  - override hydra/launcher: joblib
+  - _self_
+
+project_name: confounder-sweep
+save_folder: data/confounder-sweep
+replications: 10
+
+# Unmeasured confounder: the ground truth becomes
+#   r_ij = q_j + u_i*v_j + w_i*z_j + noise
+# i.e. two latent factors, while BMF is fitted with one (d_factor=1 from /base).
+#
+# Unlike the interaction swaps, this is not a change of preference shape but an
+# extra latent channel, so it composes with any `interaction` setting.
+#
+# w and z are standard normals, matching the ideology factors' std of 1.0.
+#
+# confounder_item_std=0.0 is the disabled baseline, kept in this sweep rather
+# than taken from agent-mean-sweep: project_name and save_folder both enter the
+# config hash, so the same parameters under a different project draw different
+# data. Enabling the confounder changes the seed too, so no two cells share
+# draws in any case; the 10 replications are what make the arms comparable.
+hydra:
+  sweeper:
+    params:
+      dg.confounder_user_std: 1.0
+      dg.confounder_item_std: 0.0, 1.0
+      dg.user_distribution.mean: ${linspace:-2,2,11}
+      model.regularization_type: l2
+      model.reg_lambda: 0.01
+      model.reg_intercept_multiplier: 1.0

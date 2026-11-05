@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the paper."
+title: "Code for: Can Ideologues Agree on Quality? From Non-identifiable Latent Factors to Collective Outcomes"
+type: software
+license: MIT
+repository-code: "https://github.com/BibliotecaBabel/BirdwatchBMFAnalysis"
+authors:
+  - family-names: Gamba
+    given-names: David
+  - family-names: Ha
+    given-names: Seura
+  - family-names: Romero
+    given-names: Daniel M.
+  - family-names: Schoenebeck
+    given-names: Grant
+preferred-citation:
+  type: conference-paper
+  title: "Can Ideologues Agree on Quality? From Non-identifiable Latent Factors to Collective Outcomes"
+  authors:
+    - family-names: Gamba
+      given-names: David
+    - family-names: Ha
+      given-names: Seura
+    - family-names: Romero
+      given-names: Daniel M.
+    - family-names: Schoenebeck
+      given-names: Grant
+  collection-title: "Advances in Neural Information Processing Systems (NeurIPS)"
+  year: 2026

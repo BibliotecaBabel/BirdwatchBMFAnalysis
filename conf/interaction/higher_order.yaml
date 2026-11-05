@@ -1,0 +1,3 @@
+_target_: bmf.interactions.HigherOrderInteraction
+name: higher_order
+phi: 0.3

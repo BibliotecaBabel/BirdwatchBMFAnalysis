@@ -1,0 +1,6 @@
+_target_: bmf.distributions.SkewTDistribution
+name: skewt
+location: 0.0
+scale: 1.0
+skewness: 0.0
+df: 3

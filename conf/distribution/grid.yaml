@@ -1,0 +1,4 @@
+_target_: bmf.distributions.GridDistribution
+name: grid
+min_val: -2.0
+max_val: 2.0

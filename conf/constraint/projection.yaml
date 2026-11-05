@@ -1,0 +1,6 @@
+_target_: bmf.constraints.MedianProjectionConstraint
+name: projection
+warmup_epochs: 100
+project_every: 10
+final_projection: true
+projection_method: median

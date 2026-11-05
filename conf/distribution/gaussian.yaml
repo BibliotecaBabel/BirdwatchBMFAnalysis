@@ -1,0 +1,4 @@
+_target_: bmf.distributions.GaussianDistribution
+name: gaussian
+mean: 0.0
+std: 1.0

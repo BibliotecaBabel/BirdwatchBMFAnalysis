@@ -1,0 +1,57 @@
+defaults:
+  - base_config
+  - distribution@dg.user_distribution: gaussian
+  - distribution@dg.item_ideology_distribution: gaussian
+  - distribution@dg.item_quality_distribution: gaussian
+  - constraint@model.constraint: none
+  - interaction@dg.interaction: bilinear
+  - _self_
+
+model:
+  reg_lambda: 0.1
+  reg_intercept_multiplier: 1.0
+  regularization_type: l2
+  loss_type: mse
+  d_factor: 1
+  ctr_lambda_multiplier: 0.0
+
+dg:
+  num_users: 101
+  num_items: 100
+
+  weight: 0.0
+  weight_mode: additive
+  extremize: both
+  extremize_percentile: 1
+
+  select_same: 1.0
+  select_opp: 1.0
+  select_mode: single
+  random_rating: false
+  random_n_items: 10
+  noise_std: 0.5
+
+  binary_ratings: false
+
+training:
+  max_epochs: 500
+  batch_size: -1
+  learning_rate: 0.05
+  log_every_n_steps: 50
+  min_delta: 1e-5
+  patience: 10
+
+project_name: gaussian-exp
+save_folder: data/gaussian-exp
+
+replications: 10
+random_seed: 42
+debug_mode: false
+k_values: [10, 50]
+approval_threshold: 0.0
+
+comet_api_key: ${oc.env:COMET_API_KEY,null}
+comet_workspace: ${oc.env:COMET_WORKSPACE,null}
+
+log_summary_experiment: false
+log_to_comet: false

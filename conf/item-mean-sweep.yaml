@@ -1,0 +1,19 @@
+defaults:
+  - /base
+  - override hydra/launcher: joblib
+  - _self_
+
+project_name: item-mean-sweep
+save_folder: data/item-mean-sweep
+replications: 10
+
+hydra:
+  sweeper:
+    params:
+      dg.item_ideology_distribution.mean: ${linspace:-2,2,11}
+      # model.regularization_type: l1, l2
+      model.regularization_type: l2
+      model.reg_lambda: 0.01
+      # model.reg_intercept_multiplier: 0.2, 1.0, 5.0
+      model.reg_intercept_multiplier: 1.0
+

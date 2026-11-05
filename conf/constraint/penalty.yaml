@@ -1,0 +1,4 @@
+_target_: bmf.constraints.MedianPenaltyConstraint
+name: penalty
+temp: 1.0
+anneal_rate: 0.95
